@@ -21,6 +21,7 @@ public class MyMessageQueue {
 
     public void putMessage(MyMessage myMessage){
         try {
+            isQuit = true;
             myMessageQueue.put(myMessage);
         } catch (InterruptedException e) {
             e.printStackTrace();

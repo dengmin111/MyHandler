@@ -1,12 +1,10 @@
 package com.example.myhandler;
 
 public class MyLooper {
-    private MyMessageQueue myMessageQueue;
+    private static MyMessageQueue myMessageQueue = new MyMessageQueue();
     private static ThreadLocal<MyLooper> threadLocal = new ThreadLocal<>();
 
-    public MyLooper(MyMessageQueue myMessageQueue){
-        this.myMessageQueue = myMessageQueue;
-        threadLocal.set(this);
+    private MyLooper(){
     }
 
     public void loop(){
@@ -23,7 +21,7 @@ public class MyLooper {
 
     public static MyLooper getMyLooper(){
         if(threadLocal.get() == null){
-            return new MyLooper(new MyMessageQueue());
+            threadLocal.set(new MyLooper());
         }
         return threadLocal.get();
     }

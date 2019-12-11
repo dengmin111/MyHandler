@@ -4,12 +4,14 @@ public class MyHandler {
     private MyLooper myLooper;
     private MyMessageQueue myMessageQueue;
     private CallBack mCallBack;
-    public MyHandler (CallBack mCallBack){
-        this.mCallBack = mCallBack;
+    public MyHandler(){
         myLooper = MyLooper.getMyLooper();
         myMessageQueue = myLooper.getMyMessageQueue();
     }
-
+    public MyHandler (CallBack mCallBack){
+        this();
+        this.mCallBack = mCallBack;
+    }
     public MyHandler(MyLooper looper, CallBack mCallBack){
         this.mCallBack = mCallBack;
         myLooper = looper;
@@ -35,7 +37,7 @@ public class MyHandler {
     public MyLooper getMyLooper(){
         return myLooper;
     }
-    private void handleMessage(MyMessage mmsg){ }
+    public void handleMessage(MyMessage mmsg){ }
 
     interface CallBack{
         void handleMessage(MyMessage mmsg);

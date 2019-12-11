@@ -8,8 +8,10 @@ import java.util.Stack;
 public class QuickSort {
 
     public int[] solution(int[] array) {
-        int number = array.length;
-        sort(array, 0, number - 1);
+        if (array != null && array.length != 0) {
+            int number = array.length;
+            sort(array, 0, number - 1);
+        }
         return array;
     }
 
@@ -20,10 +22,8 @@ public class QuickSort {
             s.push(end);
         }
         while (!s.empty()) {
-            int high = s.peek();
-            s.pop();
-            int low = s.peek();
-            s.pop();
+            int high = s.pop();
+            int low = s.pop();
             if (low < high) {
                 int pivot = partition(array, low, high);
                 if (low < pivot - 1) {
@@ -68,6 +68,14 @@ public class QuickSort {
         int[] input = null;
         int[] res = solution(input);
         Assert.assertNull("input is null,res should be null", res);
+    }
+
+    @Test
+    public void test_quickSort_normol() {
+        int[] input = {5, 1, 2, 3, 4, 6};
+        int[] except = {1, 2, 3, 4, 5, 6};
+        int[] res = solution(input);
+        Assert.assertArrayEquals(except, res);
     }
 
 }

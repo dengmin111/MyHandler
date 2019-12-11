@@ -3,10 +3,10 @@ package com.example.myhandler;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MyMessage {
+    //实现了MyMessage的复用
     private static final int MAX_SIZE = 10;
     private static ConcurrentLinkedQueue<MyMessage> messagePool = new ConcurrentLinkedQueue<>();
     private static volatile int size = 0;
-
 
     private String message;
     private MyHandler target;
